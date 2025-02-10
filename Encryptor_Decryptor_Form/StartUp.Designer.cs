@@ -75,6 +75,46 @@ namespace Encryptor_Decryptor_Form
             Success_File_Title = new Label();
             File_Symmetric_Decryption_Title = new Label();
             File_Decryption_Path = new TextBox();
+            Create_account = new Button();
+            Login = new Button();
+            Title_Assymetric_Encryption = new Label();
+            Incorrect_Password = new Label();
+            Account_Not_Found = new Label();
+            Password_Label = new Label();
+            Username_Label = new Label();
+            Password_Textbox = new TextBox();
+            Username_Textbox = new TextBox();
+            Login_Button = new Button();
+            Login_Title = new Label();
+            Username_Error = new Label();
+            Password_Error = new Label();
+            Create_Account_Button = new Button();
+            Account_Already_Exists = new Label();
+            Create_Account_Title = new Label();
+            Username_Spaces = new Label();
+            Empty_Password = new Label();
+            Empty_Username = new Label();
+            Password_Spaces = new Label();
+            Password_Length = new Label();
+            Username_Length = new Label();
+            Log_Out = new Button();
+            Send = new Button();
+            Read_Inbox = new Button();
+            Unread_Label = new Label();
+            User_Title = new Label();
+            Inbox = new ListView();
+            Inbox_Title = new Label();
+            Recipient_Not_Found = new Label();
+            Send_Title = new Label();
+            Recipient_Name = new TextBox();
+            Recipient_TickMark = new Button();
+            Recipient_Error = new Label();
+            Choose_Title = new Label();
+            Send_File = new Button();
+            Send_Message = new Button();
+            Message_Send = new TextBox();
+            Message_TickMark = new Button();
+            Message_Sent_Title = new Label();
             SuspendLayout();
             // 
             // Title_Symmetric
@@ -662,16 +702,587 @@ namespace Encryptor_Decryptor_Form
             File_Decryption_Path.TabIndex = 50;
             File_Decryption_Path.Visible = false;
             // 
+            // Create_account
+            // 
+            Create_account.Enabled = false;
+            Create_account.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Create_account.ForeColor = SystemColors.ActiveCaptionText;
+            Create_account.Location = new Point(639, 515);
+            Create_account.Name = "Create_account";
+            Create_account.Size = new Size(387, 172);
+            Create_account.TabIndex = 57;
+            Create_account.TabStop = false;
+            Create_account.Text = "CREATE ACCOUNT";
+            Create_account.UseVisualStyleBackColor = true;
+            Create_account.Visible = false;
+            Create_account.Click += Create_account_Click;
+            // 
+            // Login
+            // 
+            Login.Enabled = false;
+            Login.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Login.ForeColor = Color.Black;
+            Login.Location = new Point(639, 274);
+            Login.Name = "Login";
+            Login.Size = new Size(387, 172);
+            Login.TabIndex = 56;
+            Login.Text = "LOGIN";
+            Login.UseVisualStyleBackColor = true;
+            Login.Visible = false;
+            Login.Click += Login_Click;
+            // 
+            // Title_Assymetric_Encryption
+            // 
+            Title_Assymetric_Encryption.AutoSize = true;
+            Title_Assymetric_Encryption.Enabled = false;
+            Title_Assymetric_Encryption.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Title_Assymetric_Encryption.ForeColor = Color.White;
+            Title_Assymetric_Encryption.Location = new Point(464, 127);
+            Title_Assymetric_Encryption.Name = "Title_Assymetric_Encryption";
+            Title_Assymetric_Encryption.Size = new Size(737, 55);
+            Title_Assymetric_Encryption.TabIndex = 55;
+            Title_Assymetric_Encryption.Text = "ASSYMETRICAL ENCRYPTION";
+            Title_Assymetric_Encryption.TextAlign = ContentAlignment.MiddleCenter;
+            Title_Assymetric_Encryption.Visible = false;
+            // 
+            // Incorrect_Password
+            // 
+            Incorrect_Password.AutoSize = true;
+            Incorrect_Password.Enabled = false;
+            Incorrect_Password.Font = new Font("Arial Rounded MT Bold", 22F);
+            Incorrect_Password.ForeColor = Color.Red;
+            Incorrect_Password.Location = new Point(684, 484);
+            Incorrect_Password.Name = "Incorrect_Password";
+            Incorrect_Password.Size = new Size(312, 34);
+            Incorrect_Password.TabIndex = 67;
+            Incorrect_Password.Text = "Incorrect password!";
+            Incorrect_Password.Visible = false;
+            // 
+            // Account_Not_Found
+            // 
+            Account_Not_Found.AutoSize = true;
+            Account_Not_Found.Enabled = false;
+            Account_Not_Found.Font = new Font("Arial Rounded MT Bold", 22F);
+            Account_Not_Found.ForeColor = Color.Red;
+            Account_Not_Found.Location = new Point(684, 326);
+            Account_Not_Found.Name = "Account_Not_Found";
+            Account_Not_Found.Size = new Size(294, 34);
+            Account_Not_Found.TabIndex = 66;
+            Account_Not_Found.Text = "Account not found!";
+            Account_Not_Found.Visible = false;
+            // 
+            // Password_Label
+            // 
+            Password_Label.AutoSize = true;
+            Password_Label.Enabled = false;
+            Password_Label.Font = new Font("Arial Rounded MT Bold", 22F);
+            Password_Label.ForeColor = Color.White;
+            Password_Label.Location = new Point(551, 393);
+            Password_Label.Name = "Password_Label";
+            Password_Label.Size = new Size(168, 34);
+            Password_Label.TabIndex = 63;
+            Password_Label.Text = "Password:";
+            Password_Label.Visible = false;
+            // 
+            // Username_Label
+            // 
+            Username_Label.AutoSize = true;
+            Username_Label.Enabled = false;
+            Username_Label.Font = new Font("Arial Rounded MT Bold", 22F);
+            Username_Label.ForeColor = Color.White;
+            Username_Label.Location = new Point(551, 237);
+            Username_Label.Name = "Username_Label";
+            Username_Label.Size = new Size(175, 34);
+            Username_Label.TabIndex = 62;
+            Username_Label.Text = "Username:";
+            Username_Label.Visible = false;
+            // 
+            // Password_Textbox
+            // 
+            Password_Textbox.Enabled = false;
+            Password_Textbox.Font = new Font("Arial Rounded MT Bold", 20.25F);
+            Password_Textbox.Location = new Point(551, 430);
+            Password_Textbox.Name = "Password_Textbox";
+            Password_Textbox.Size = new Size(561, 39);
+            Password_Textbox.TabIndex = 61;
+            Password_Textbox.Visible = false;
+            // 
+            // Username_Textbox
+            // 
+            Username_Textbox.Enabled = false;
+            Username_Textbox.Font = new Font("Arial Rounded MT Bold", 20.25F);
+            Username_Textbox.Location = new Point(551, 274);
+            Username_Textbox.Name = "Username_Textbox";
+            Username_Textbox.Size = new Size(561, 39);
+            Username_Textbox.TabIndex = 60;
+            Username_Textbox.Visible = false;
+            // 
+            // Login_Button
+            // 
+            Login_Button.Enabled = false;
+            Login_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Login_Button.ForeColor = SystemColors.ActiveCaptionText;
+            Login_Button.Location = new Point(639, 541);
+            Login_Button.Name = "Login_Button";
+            Login_Button.Size = new Size(387, 39);
+            Login_Button.TabIndex = 59;
+            Login_Button.TabStop = false;
+            Login_Button.Text = "LOGIN";
+            Login_Button.UseVisualStyleBackColor = true;
+            Login_Button.Visible = false;
+            Login_Button.Click += Login_Button_Click;
+            // 
+            // Login_Title
+            // 
+            Login_Title.AutoSize = true;
+            Login_Title.Enabled = false;
+            Login_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Login_Title.ForeColor = Color.White;
+            Login_Title.Location = new Point(741, 81);
+            Login_Title.Name = "Login_Title";
+            Login_Title.Size = new Size(180, 55);
+            Login_Title.TabIndex = 58;
+            Login_Title.Text = "LOGIN";
+            Login_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Login_Title.Visible = false;
+            // 
+            // Username_Error
+            // 
+            Username_Error.AutoSize = true;
+            Username_Error.BackColor = Color.Red;
+            Username_Error.Enabled = false;
+            Username_Error.Font = new Font("Segoe UI", 23F);
+            Username_Error.Location = new Point(550, 273);
+            Username_Error.Name = "Username_Error";
+            Username_Error.Size = new Size(565, 42);
+            Username_Error.TabIndex = 64;
+            Username_Error.Text = "label1aaaaaaaIaIaIIIIIIIIaaaaaaaaaaaaaaa";
+            Username_Error.Visible = false;
+            // 
+            // Password_Error
+            // 
+            Password_Error.AutoSize = true;
+            Password_Error.BackColor = Color.Red;
+            Password_Error.Enabled = false;
+            Password_Error.Font = new Font("Segoe UI", 23F);
+            Password_Error.Location = new Point(549, 429);
+            Password_Error.Name = "Password_Error";
+            Password_Error.Size = new Size(565, 42);
+            Password_Error.TabIndex = 65;
+            Password_Error.Text = "label1aaaaaaaIaIaIIIIIIIIaaaaaaaaaaaaaaa";
+            Password_Error.Visible = false;
+            // 
+            // Create_Account_Button
+            // 
+            Create_Account_Button.Enabled = false;
+            Create_Account_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Create_Account_Button.ForeColor = SystemColors.ActiveCaptionText;
+            Create_Account_Button.Location = new Point(639, 542);
+            Create_Account_Button.Name = "Create_Account_Button";
+            Create_Account_Button.Size = new Size(387, 39);
+            Create_Account_Button.TabIndex = 70;
+            Create_Account_Button.TabStop = false;
+            Create_Account_Button.Text = "CREATE ACCOUNT";
+            Create_Account_Button.UseVisualStyleBackColor = true;
+            Create_Account_Button.Visible = false;
+            Create_Account_Button.Click += Create_Account_Button_Click;
+            // 
+            // Account_Already_Exists
+            // 
+            Account_Already_Exists.AutoSize = true;
+            Account_Already_Exists.Enabled = false;
+            Account_Already_Exists.Font = new Font("Arial Rounded MT Bold", 22F);
+            Account_Already_Exists.ForeColor = Color.Red;
+            Account_Already_Exists.Location = new Point(653, 326);
+            Account_Already_Exists.Name = "Account_Already_Exists";
+            Account_Already_Exists.Size = new Size(359, 34);
+            Account_Already_Exists.TabIndex = 69;
+            Account_Already_Exists.Text = "Account already exists!";
+            Account_Already_Exists.Visible = false;
+            // 
+            // Create_Account_Title
+            // 
+            Create_Account_Title.AutoSize = true;
+            Create_Account_Title.Enabled = false;
+            Create_Account_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Create_Account_Title.ForeColor = Color.White;
+            Create_Account_Title.Location = new Point(591, 81);
+            Create_Account_Title.Name = "Create_Account_Title";
+            Create_Account_Title.Size = new Size(483, 55);
+            Create_Account_Title.TabIndex = 68;
+            Create_Account_Title.Text = "CREATE ACCOUNT";
+            Create_Account_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Create_Account_Title.Visible = false;
+            // 
+            // Username_Spaces
+            // 
+            Username_Spaces.AutoSize = true;
+            Username_Spaces.Enabled = false;
+            Username_Spaces.Font = new Font("Arial Rounded MT Bold", 22F);
+            Username_Spaces.ForeColor = Color.Red;
+            Username_Spaces.Location = new Point(571, 327);
+            Username_Spaces.Name = "Username_Spaces";
+            Username_Spaces.Size = new Size(523, 34);
+            Username_Spaces.TabIndex = 71;
+            Username_Spaces.Text = "Username can not contain spaces!";
+            Username_Spaces.Visible = false;
+            // 
+            // Empty_Password
+            // 
+            Empty_Password.AutoSize = true;
+            Empty_Password.Enabled = false;
+            Empty_Password.Font = new Font("Arial Rounded MT Bold", 22F);
+            Empty_Password.ForeColor = Color.Red;
+            Empty_Password.Location = new Point(691, 484);
+            Empty_Password.Name = "Empty_Password";
+            Empty_Password.Size = new Size(282, 34);
+            Empty_Password.TabIndex = 72;
+            Empty_Password.Text = "Enter a password!";
+            Empty_Password.Visible = false;
+            // 
+            // Empty_Username
+            // 
+            Empty_Username.AutoSize = true;
+            Empty_Username.Enabled = false;
+            Empty_Username.Font = new Font("Arial Rounded MT Bold", 22F);
+            Empty_Username.ForeColor = Color.Red;
+            Empty_Username.Location = new Point(695, 327);
+            Empty_Username.Name = "Empty_Username";
+            Empty_Username.Size = new Size(275, 34);
+            Empty_Username.TabIndex = 73;
+            Empty_Username.Text = "Enter a username";
+            Empty_Username.Visible = false;
+            // 
+            // Password_Spaces
+            // 
+            Password_Spaces.AutoSize = true;
+            Password_Spaces.Enabled = false;
+            Password_Spaces.Font = new Font("Arial Rounded MT Bold", 22F);
+            Password_Spaces.ForeColor = Color.Red;
+            Password_Spaces.Location = new Point(571, 484);
+            Password_Spaces.Name = "Password_Spaces";
+            Password_Spaces.Size = new Size(516, 34);
+            Password_Spaces.TabIndex = 74;
+            Password_Spaces.Text = "Password can not contain spaces!";
+            Password_Spaces.Visible = false;
+            // 
+            // Password_Length
+            // 
+            Password_Length.AutoSize = true;
+            Password_Length.Enabled = false;
+            Password_Length.Font = new Font("Arial Rounded MT Bold", 22F);
+            Password_Length.ForeColor = Color.Red;
+            Password_Length.Location = new Point(517, 486);
+            Password_Length.Name = "Password_Length";
+            Password_Length.Size = new Size(630, 34);
+            Password_Length.TabIndex = 75;
+            Password_Length.Text = "Password must be 6 characters or longer!";
+            Password_Length.Visible = false;
+            // 
+            // Username_Length
+            // 
+            Username_Length.AutoSize = true;
+            Username_Length.Enabled = false;
+            Username_Length.Font = new Font("Arial Rounded MT Bold", 22F);
+            Username_Length.ForeColor = Color.Red;
+            Username_Length.Location = new Point(464, 327);
+            Username_Length.Name = "Username_Length";
+            Username_Length.Size = new Size(737, 34);
+            Username_Length.TabIndex = 76;
+            Username_Length.Text = "Username must be between 3 and 20 characters!";
+            Username_Length.Visible = false;
+            // 
+            // Log_Out
+            // 
+            Log_Out.Enabled = false;
+            Log_Out.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Log_Out.ForeColor = SystemColors.ActiveCaptionText;
+            Log_Out.Location = new Point(1032, 724);
+            Log_Out.Name = "Log_Out";
+            Log_Out.Size = new Size(387, 83);
+            Log_Out.TabIndex = 81;
+            Log_Out.TabStop = false;
+            Log_Out.Text = "LOG OUT";
+            Log_Out.UseVisualStyleBackColor = true;
+            Log_Out.Visible = false;
+            Log_Out.Click += Log_Out_Click;
+            // 
+            // Send
+            // 
+            Send.Enabled = false;
+            Send.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Send.ForeColor = SystemColors.ActiveCaptionText;
+            Send.Location = new Point(639, 513);
+            Send.Name = "Send";
+            Send.Size = new Size(387, 114);
+            Send.TabIndex = 80;
+            Send.TabStop = false;
+            Send.Text = "SEND MESSAGE/FILE";
+            Send.UseVisualStyleBackColor = true;
+            Send.Visible = false;
+            Send.Click += Send_Click;
+            // 
+            // Read_Inbox
+            // 
+            Read_Inbox.Enabled = false;
+            Read_Inbox.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Read_Inbox.ForeColor = SystemColors.ActiveCaptionText;
+            Read_Inbox.Location = new Point(639, 343);
+            Read_Inbox.Name = "Read_Inbox";
+            Read_Inbox.Size = new Size(387, 114);
+            Read_Inbox.TabIndex = 79;
+            Read_Inbox.TabStop = false;
+            Read_Inbox.Text = "READ INBOX";
+            Read_Inbox.UseVisualStyleBackColor = true;
+            Read_Inbox.Visible = false;
+            Read_Inbox.Click += Read_Inbox_Click;
+            // 
+            // Unread_Label
+            // 
+            Unread_Label.Enabled = false;
+            Unread_Label.Font = new Font("Arial Rounded MT Bold", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Unread_Label.ForeColor = Color.White;
+            Unread_Label.Location = new Point(405, 194);
+            Unread_Label.Name = "Unread_Label";
+            Unread_Label.Size = new Size(854, 43);
+            Unread_Label.TabIndex = 78;
+            Unread_Label.Text = "YOU HAVE {} UNREAD FILE(S) IN YOUR INBOX";
+            Unread_Label.TextAlign = ContentAlignment.MiddleCenter;
+            Unread_Label.Visible = false;
+            // 
+            // User_Title
+            // 
+            User_Title.Enabled = false;
+            User_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            User_Title.ForeColor = Color.White;
+            User_Title.Location = new Point(591, 81);
+            User_Title.Name = "User_Title";
+            User_Title.Size = new Size(483, 55);
+            User_Title.TabIndex = 82;
+            User_Title.Text = "WELCOME";
+            User_Title.TextAlign = ContentAlignment.MiddleCenter;
+            User_Title.Visible = false;
+            // 
+            // Inbox
+            // 
+            Inbox.Activation = ItemActivation.OneClick;
+            Inbox.AutoArrange = false;
+            Inbox.Enabled = false;
+            Inbox.Font = new Font("Arial Rounded MT Bold", 15.25F);
+            Inbox.FullRowSelect = true;
+            Inbox.GridLines = true;
+            Inbox.Location = new Point(401, 180);
+            Inbox.MultiSelect = false;
+            Inbox.Name = "Inbox";
+            Inbox.Size = new Size(863, 478);
+            Inbox.TabIndex = 83;
+            Inbox.UseCompatibleStateImageBehavior = false;
+            Inbox.View = View.Tile;
+            Inbox.Visible = false;
+            Inbox.SelectedIndexChanged += Inbox_SelectedIndexChanged;
+            // 
+            // Inbox_Title
+            // 
+            Inbox_Title.AutoSize = true;
+            Inbox_Title.Enabled = false;
+            Inbox_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Inbox_Title.ForeColor = Color.White;
+            Inbox_Title.Location = new Point(744, 81);
+            Inbox_Title.Name = "Inbox_Title";
+            Inbox_Title.Size = new Size(177, 55);
+            Inbox_Title.TabIndex = 84;
+            Inbox_Title.Text = "INBOX";
+            Inbox_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Inbox_Title.Visible = false;
+            // 
+            // Recipient_Not_Found
+            // 
+            Recipient_Not_Found.AutoSize = true;
+            Recipient_Not_Found.Enabled = false;
+            Recipient_Not_Found.Font = new Font("Arial Rounded MT Bold", 22F);
+            Recipient_Not_Found.ForeColor = Color.Red;
+            Recipient_Not_Found.Location = new Point(689, 287);
+            Recipient_Not_Found.Name = "Recipient_Not_Found";
+            Recipient_Not_Found.Size = new Size(311, 34);
+            Recipient_Not_Found.TabIndex = 94;
+            Recipient_Not_Found.Text = "Recipient not found!";
+            Recipient_Not_Found.Visible = false;
+            // 
+            // Send_Title
+            // 
+            Send_Title.AutoSize = true;
+            Send_Title.Enabled = false;
+            Send_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Send_Title.ForeColor = Color.White;
+            Send_Title.Location = new Point(409, 95);
+            Send_Title.Name = "Send_Title";
+            Send_Title.Size = new Size(880, 55);
+            Send_Title.TabIndex = 92;
+            Send_Title.Text = "ENTER USERNAME OF RECEPTIENT";
+            Send_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Send_Title.Visible = false;
+            // 
+            // Recipient_Name
+            // 
+            Recipient_Name.Enabled = false;
+            Recipient_Name.Font = new Font("Arial Rounded MT Bold", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Recipient_Name.Location = new Point(351, 209);
+            Recipient_Name.Name = "Recipient_Name";
+            Recipient_Name.Size = new Size(895, 48);
+            Recipient_Name.TabIndex = 91;
+            Recipient_Name.Visible = false;
+            // 
+            // Recipient_TickMark
+            // 
+            Recipient_TickMark.BackColor = Color.White;
+            Recipient_TickMark.BackgroundImage = (Image)resources.GetObject("Recipient_TickMark.BackgroundImage");
+            Recipient_TickMark.BackgroundImageLayout = ImageLayout.Center;
+            Recipient_TickMark.Enabled = false;
+            Recipient_TickMark.FlatStyle = FlatStyle.Popup;
+            Recipient_TickMark.ForeColor = Color.Transparent;
+            Recipient_TickMark.ImageAlign = ContentAlignment.TopCenter;
+            Recipient_TickMark.Location = new Point(1267, 208);
+            Recipient_TickMark.Name = "Recipient_TickMark";
+            Recipient_TickMark.Size = new Size(48, 48);
+            Recipient_TickMark.TabIndex = 90;
+            Recipient_TickMark.UseVisualStyleBackColor = false;
+            Recipient_TickMark.Visible = false;
+            Recipient_TickMark.Click += Recipient_TickMark_Click;
+            // 
+            // Recipient_Error
+            // 
+            Recipient_Error.AutoSize = true;
+            Recipient_Error.BackColor = Color.Red;
+            Recipient_Error.Enabled = false;
+            Recipient_Error.Font = new Font("Segoe UI", 29F);
+            Recipient_Error.Location = new Point(349, 207);
+            Recipient_Error.Name = "Recipient_Error";
+            Recipient_Error.Size = new Size(900, 52);
+            Recipient_Error.TabIndex = 93;
+            Recipient_Error.Text = "label1aaaaaajjjjIIIIIIIIaaaaaIaIaIIIIIIIIaaaaaaaaaaaaaaa";
+            Recipient_Error.Visible = false;
+            // 
+            // Choose_Title
+            // 
+            Choose_Title.AutoSize = true;
+            Choose_Title.Enabled = false;
+            Choose_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Choose_Title.ForeColor = Color.White;
+            Choose_Title.Location = new Point(614, 118);
+            Choose_Title.Name = "Choose_Title";
+            Choose_Title.Size = new Size(437, 55);
+            Choose_Title.TabIndex = 97;
+            Choose_Title.Text = "CHOOSE OPTION";
+            Choose_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Choose_Title.Visible = false;
+            Choose_Title.Click += Choose_Title_Click;
+            // 
+            // Send_File
+            // 
+            Send_File.Enabled = false;
+            Send_File.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Send_File.ForeColor = SystemColors.ActiveCaptionText;
+            Send_File.Location = new Point(965, 419);
+            Send_File.Name = "Send_File";
+            Send_File.Size = new Size(387, 172);
+            Send_File.TabIndex = 96;
+            Send_File.TabStop = false;
+            Send_File.Text = "SEND FILE";
+            Send_File.UseVisualStyleBackColor = true;
+            Send_File.Visible = false;
+            Send_File.Click += Send_File_Click;
+            // 
+            // Send_Message
+            // 
+            Send_Message.Enabled = false;
+            Send_Message.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Send_Message.ForeColor = Color.Black;
+            Send_Message.Location = new Point(313, 419);
+            Send_Message.Name = "Send_Message";
+            Send_Message.Size = new Size(387, 172);
+            Send_Message.TabIndex = 95;
+            Send_Message.Text = "SEND MESSAGE";
+            Send_Message.UseVisualStyleBackColor = true;
+            Send_Message.Visible = false;
+            Send_Message.Click += Send_Message_Click;
+            // 
+            // Message_Send
+            // 
+            Message_Send.Enabled = false;
+            Message_Send.Font = new Font("Arial Rounded MT Bold", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Message_Send.Location = new Point(350, 267);
+            Message_Send.Name = "Message_Send";
+            Message_Send.Size = new Size(895, 48);
+            Message_Send.TabIndex = 100;
+            Message_Send.Visible = false;
+            // 
+            // Message_TickMark
+            // 
+            Message_TickMark.BackColor = Color.White;
+            Message_TickMark.BackgroundImage = (Image)resources.GetObject("Message_TickMark.BackgroundImage");
+            Message_TickMark.BackgroundImageLayout = ImageLayout.Center;
+            Message_TickMark.Enabled = false;
+            Message_TickMark.FlatStyle = FlatStyle.Popup;
+            Message_TickMark.ForeColor = Color.Transparent;
+            Message_TickMark.ImageAlign = ContentAlignment.TopCenter;
+            Message_TickMark.Location = new Point(1266, 266);
+            Message_TickMark.Name = "Message_TickMark";
+            Message_TickMark.Size = new Size(48, 48);
+            Message_TickMark.TabIndex = 99;
+            Message_TickMark.UseVisualStyleBackColor = false;
+            Message_TickMark.Visible = false;
+            Message_TickMark.Click += Message_TickMark_Click;
+            // 
+            // Message_Sent_Title
+            // 
+            Message_Sent_Title.AutoSize = true;
+            Message_Sent_Title.Enabled = false;
+            Message_Sent_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Message_Sent_Title.ForeColor = Color.White;
+            Message_Sent_Title.Location = new Point(614, 118);
+            Message_Sent_Title.Name = "Message_Sent_Title";
+            Message_Sent_Title.Size = new Size(493, 55);
+            Message_Sent_Title.TabIndex = 98;
+            Message_Sent_Title.Text = "MESSAGE TO SEND";
+            Message_Sent_Title.TextAlign = ContentAlignment.MiddleCenter;
+            Message_Sent_Title.Visible = false;
+            // 
             // StartUp_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1664, 1011);
+            Controls.Add(Inbox);
+            Controls.Add(Message_Send);
+            Controls.Add(Message_TickMark);
+            Controls.Add(Message_Sent_Title);
+            Controls.Add(Choose_Title);
+            Controls.Add(Send_File);
+            Controls.Add(Send_Message);
+            Controls.Add(Recipient_Not_Found);
+            Controls.Add(Send_Title);
+            Controls.Add(Recipient_Name);
+            Controls.Add(Recipient_TickMark);
+            Controls.Add(Recipient_Error);
+            Controls.Add(Inbox_Title);
+            Controls.Add(User_Title);
+            Controls.Add(Log_Out);
+            Controls.Add(Unread_Label);
+            Controls.Add(Create_Account_Title);
+            Controls.Add(Account_Not_Found);
+            Controls.Add(Password_Label);
+            Controls.Add(Username_Label);
+            Controls.Add(Password_Textbox);
+            Controls.Add(Username_Textbox);
+            Controls.Add(Login_Title);
+            Controls.Add(Username_Error);
+            Controls.Add(Password_Error);
+            Controls.Add(Login);
+            Controls.Add(Title_Assymetric_Encryption);
             Controls.Add(File_Decryption_Tickmark);
             Controls.Add(File_Decription_Title);
             Controls.Add(File_Decryption_Key);
-            Controls.Add(Success_File_Title);
             Controls.Add(File_Symmetric_Decryption_Title);
             Controls.Add(File_Decryption_Path);
             Controls.Add(Copy_File_Key);
@@ -679,7 +1290,6 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(File_Encryption_TickMark);
             Controls.Add(File_Symmetric_Encryption_Title);
             Controls.Add(File_Encryption_Path);
-            Controls.Add(File_Key_title);
             Controls.Add(File_Key_Out);
             Controls.Add(Symmetric_Encryption_Title);
             Controls.Add(GoBack);
@@ -700,8 +1310,6 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Symmetric_Direct_Decryption);
             Controls.Add(Copy_messge);
             Controls.Add(Copy_key);
-            Controls.Add(Encryption_key_label);
-            Controls.Add(Direct_Decryption_Title3);
             Controls.Add(Encrypt_Message_Out);
             Controls.Add(Direct_Decryption_Message_Out);
             Controls.Add(Direct_Decryption_Tickmark);
@@ -713,6 +1321,23 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Encrypt_Symmetric);
             Controls.Add(Asymmetric_StartUp);
             Controls.Add(Title_StartUp);
+            Controls.Add(Send);
+            Controls.Add(Create_account);
+            Controls.Add(Create_Account_Button);
+            Controls.Add(Username_Length);
+            Controls.Add(Read_Inbox);
+            Controls.Add(Username_Spaces);
+            Controls.Add(Empty_Username);
+            Controls.Add(Account_Already_Exists);
+            Controls.Add(Password_Length);
+            Controls.Add(Password_Spaces);
+            Controls.Add(Empty_Password);
+            Controls.Add(Success_File_Title);
+            Controls.Add(Incorrect_Password);
+            Controls.Add(Encryption_key_label);
+            Controls.Add(Direct_Decryption_Title3);
+            Controls.Add(Login_Button);
+            Controls.Add(File_Key_title);
             ForeColor = SystemColors.ButtonFace;
             Name = "StartUp_Form";
             Text = "StartUp";
@@ -768,5 +1393,45 @@ namespace Encryptor_Decryptor_Form
         private Label Success_File_Title;
         private Label File_Symmetric_Decryption_Title;
         private TextBox File_Decryption_Path;
+        private Button Create_account;
+        private Button Login;
+        private Label Title_Assymetric_Encryption;
+        private Label Incorrect_Password;
+        private Label Account_Not_Found;
+        private Label Password_Label;
+        private Label Username_Label;
+        private TextBox Password_Textbox;
+        private TextBox Username_Textbox;
+        private Button Login_Button;
+        private Label Login_Title;
+        private Label Username_Error;
+        private Label Password_Error;
+        private Button Create_Account_Button;
+        private Label Account_Already_Exists;
+        private Label Create_Account_Title;
+        private Label Username_Spaces;
+        private Label Empty_Password;
+        private Label Empty_Username;
+        private Label Password_Spaces;
+        private Label Password_Length;
+        private Label Username_Length;
+        private Button Log_Out;
+        private Button Send;
+        private Button Read_Inbox;
+        private Label Unread_Label;
+        private Label User_Title;
+        private ListView Inbox;
+        private Label Inbox_Title;
+        private Label Recipient_Not_Found;
+        private Label Send_Title;
+        private TextBox Recipient_Name;
+        private Button Recipient_TickMark;
+        private Label Recipient_Error;
+        private Label Choose_Title;
+        private Button Send_File;
+        private Button Send_Message;
+        private TextBox Message_Send;
+        private Button Message_TickMark;
+        private Label Message_Sent_Title;
     }
 }

@@ -31,5 +31,35 @@ namespace Encryptor_Decryptor_Form
         {
 
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Create_Account_Password_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Inbox_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Username_Length_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

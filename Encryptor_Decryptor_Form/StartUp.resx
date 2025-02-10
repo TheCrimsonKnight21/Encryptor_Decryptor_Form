@@ -170,4 +170,30 @@
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="Recipient_TickMark.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAABGdBTUEAALGPC/xhBQAAAaFJREFUaEPV
+        2LFRw0AQhWEn9EDgNsghwp5xD2qBDuiASmyKoQOaIIX3PD6NTveETqfblS/4jLWS9v7AEbvXt1OT5LAF
+        ctgCOWyBHN6Dl8vxidQ9ksOt3aK/4BsO6plksLVB9O+NjI8utobAcfRkfPTilhA2FR1E8cmCLSBoLjro
+        4+UiTwjJjQ4Y38llXhCwNDr4lAs94PDiaNjLpdZwcHn0+fjIHXKxJRy+OpqSxZZweJVoihZbwuHVoim6
+        sILDq0ZTMqgNh1ePJjl8vhwe8OI7dOp+LrxvEk3JYBDNBT9QFI/3zKIpuhhEMzgsWhyP502jqf8yER1k
+        x+M582i6fsxEB7PxuO8STbnRwWQ85m7RxAM/ICc6SOJx7RpNJeHUx+OvezQt/akM8Xm+5x5N148V8SVW
+        R1P/xSm+SjRFF8bx1aIpGRjFV40mOawcXz2a5JAqxZtEkxwGK+PNokkOhwrjTaNJDscWxptHkxwqmfEu
+        0SSHU2bi3aJJDv8zEc9/i7lFkxzOGcW7R5Mc5rjFd7BX963JYQvksAVy2AI5vH+n3R+ADPlO74w9rgAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="Message_TickMark.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAABGdBTUEAALGPC/xhBQAAAaFJREFUaEPV
+        2LFRw0AQhWEn9EDgNsghwp5xD2qBDuiASmyKoQOaIIX3PD6NTveETqfblS/4jLWS9v7AEbvXt1OT5LAF
+        ctgCOWyBHN6Dl8vxidQ9ksOt3aK/4BsO6plksLVB9O+NjI8utobAcfRkfPTilhA2FR1E8cmCLSBoLjro
+        4+UiTwjJjQ4Y38llXhCwNDr4lAs94PDiaNjLpdZwcHn0+fjIHXKxJRy+OpqSxZZweJVoihZbwuHVoim6
+        sILDq0ZTMqgNh1ePJjl8vhwe8OI7dOp+LrxvEk3JYBDNBT9QFI/3zKIpuhhEMzgsWhyP502jqf8yER1k
+        x+M582i6fsxEB7PxuO8STbnRwWQ85m7RxAM/ICc6SOJx7RpNJeHUx+OvezQt/akM8Xm+5x5N148V8SVW
+        R1P/xSm+SjRFF8bx1aIpGRjFV40mOawcXz2a5JAqxZtEkxwGK+PNokkOhwrjTaNJDscWxptHkxwqmfEu
+        0SSHU2bi3aJJDv8zEc9/i7lFkxzOGcW7R5Mc5rjFd7BX963JYQvksAVy2AI5vH+n3R+ADPlO74w9rgAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
 </root>

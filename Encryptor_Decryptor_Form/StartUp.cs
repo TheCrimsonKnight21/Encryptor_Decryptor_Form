@@ -1,11 +1,21 @@
 using Encryptor_Decryptor;
+using Encryptor_Decryptor.Main.UserRepository;
 using EncryptorDecryptor;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Diagnostics;
+using System.Text;
 
 namespace Encryptor_Decryptor_Form
 {
     public partial class StartUp_Form : Form
     {
         private readonly Stack<List<Control>> navigationHistory = new Stack<List<Control>>();
+
+        private readonly UsersRepository _usersRepository = new();
+
+        private Encryptor_Decryptor.Main.UserRepository.User _logedUser;
+
+        private string recipient;
 
         public StartUp_Form()
         {
@@ -22,7 +32,7 @@ namespace Encryptor_Decryptor_Form
 
         private void Asymmetric_Click(object sender, EventArgs e)
         {
-            // Placeholder for asymmetric encryption logic
+            ShowAsymmetricOptions();
         }
 
         private void ToStart_Click(object sender, EventArgs e)
@@ -108,18 +118,185 @@ namespace Encryptor_Decryptor_Form
             CopyToClipboard(File_Key_Out.Text);
         }
 
+        private void Create_account_Click(object sender, EventArgs e)
+        {
+            ShowCreateAccount();
+        }
+
+        private void Create_Account_Button_Click(object sender, EventArgs e)
+        {
+            HideErrors();
+            string username = Username_Textbox.Text;
+            string password = Password_Textbox.Text;
+            bool error = false;
+            if (_usersRepository.Exists(username))
+            {
+                SetControlVisibility(true, Username_Error, Account_Already_Exists);
+                error = true;
+            }
+            if (string.IsNullOrEmpty(username))
+            {
+                SetControlVisibility(true, Username_Error, Empty_Username);
+                error = true;
+            }
+            else if (username.Length < 3 || username.Length > 20)
+            {
+                SetControlVisibility(true, Username_Error, Username_Length);
+                error = true;
+            }
+            if (username.Contains(" "))
+            {
+                SetControlVisibility(true, Username_Error, Username_Spaces);
+                error = true;
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                SetControlVisibility(true, Password_Error, Empty_Password);
+                error = true;
+            }
+            else if (password.Length < 6)
+            {
+                SetControlVisibility(true, Password_Error, Password_Length);
+                error = true;
+            }
+            if (password.Contains(" "))
+            {
+                SetControlVisibility(true, Password_Error, Password_Spaces);
+                error = true;
+            }
+
+            if (!error)
+            {
+                Encryptor_Decryptor.Main.UserRepository.User user = new Encryptor_Decryptor.Main.UserRepository.User(username, password);
+                _usersRepository.AddNew(user);
+                _logedUser = user;
+                ShowUserMenu(username);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            ShowLogin();
+        }
+        private void Login_Button_Click(object sender, EventArgs e)
+        {
+            HideErrors();
+            string username = Username_Textbox.Text;
+            string password = Password_Textbox.Text;
+            bool error = false;
+            if (!_usersRepository.Exists(username))
+            {
+                SetControlVisibility(true, Username_Error, Account_Not_Found);
+                error = true;
+            }
+            if (string.IsNullOrEmpty(username))
+            {
+                SetControlVisibility(true, Username_Error, Empty_Username);
+                error = true;
+            }
+            if (string.IsNullOrEmpty(password))
+            {
+                SetControlVisibility(true, Password_Error, Empty_Password);
+                error = true;
+            }
+            if (!_usersRepository.GetByName(username).IsPasswordTrue(password))
+            {
+                SetControlVisibility(true, Password_Error, Incorrect_Password);
+                error = true;
+            }
+            if (!error)
+            {
+                _logedUser = _usersRepository.GetByName(username);
+                ShowUserMenu(username);
+            }
+            else return;
+        }
+
+        private void Log_Out_Click(object sender, EventArgs e)
+        {
+            _logedUser = null!;
+            NavigateBack();
+            NavigateBack();
+        }
+        private void Read_Inbox_Click(object sender, EventArgs e)
+        {
+            ShowInbox();
+            Inbox.Items.Clear();
+            string[] files = Directory.GetFiles(_logedUser.InboxPath);
+            foreach (var file in files)
+            {
+                Inbox.Items.Add(Path.GetFileName(file));
+            }
+        }
+        private void Inbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            ListView.SelectedListViewItemCollection selectedItems = Inbox.SelectedItems;
+            ListView item = ((ListView)sender);
+
+            string filePath = _logedUser.InboxPath + item.FocusedItem.Text;
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                try
+                {
+                    if (Path.GetExtension(filePath) == ".txt")
+                    {
+                        string encryptedContent = File.ReadAllText(filePath, Encoding.UTF8);
+                        string decryptedContent = _logedUser.DecryptMessage(encryptedContent);
+                        File.WriteAllText(filePath, decryptedContent, Encoding.UTF8);
+                    }
+                    else
+                    {
+                        _logedUser.DecryptFile(filePath);
+                    }
+
+                    MonitorFileAndReencrypt(filePath, _logedUser);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error processing file: {ex.Message}");
+                }
+                return;
+            }
+        }
+        private void Send_Click(object sender, EventArgs e)
+        {
+            ShowOptions();
+        }
+
+        private void Send_File_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Send_Message_Click(object sender, EventArgs e)
+        {
+            ShowSend();
+        }
+        private void Message_TickMark_Click(object sender, EventArgs e)
+        {
+            SendMessage(_logedUser.Username, recipient);
+            NavigateBack();
+            NavigateBack();
+        }
+
         #endregion
 
         #region Navigation Methods
 
         private void ResetToStart()
         {
+            ResetAllTextBoxes();
             HideAllControls();
             SetControlVisibility(true, Symmetric_StartUp, Asymmetric_StartUp, Title_StartUp, Quit);
         }
 
         private void NavigateToNewState(params Control[] controlsToShow)
         {
+            ResetAllTextBoxes();
             SaveCurrentState();
             HideAllControls();
             SetControlVisibility(true, controlsToShow);
@@ -127,8 +304,10 @@ namespace Encryptor_Decryptor_Form
 
         private void NavigateBack()
         {
+            ResetAllTextBoxes();
             if (navigationHistory.Count > 0)
             {
+
                 var previousState = navigationHistory.Pop();
                 HideAllControls();
                 SetControlVisibility(true, previousState.ToArray());
@@ -244,7 +423,7 @@ namespace Encryptor_Decryptor_Form
         }
         private void ShowFileSymmetricDecryption()
         {
-            NavigateToNewState(File_Decription_Title, File_Decryption_Key, File_Decryption_Path, File_Symmetric_Decryption_Title, File_Decription_Title,File_Decryption_Tickmark,GoBack,Quit);
+            NavigateToNewState(File_Decription_Title, File_Decryption_Key, File_Decryption_Path, File_Symmetric_Decryption_Title, File_Decription_Title, File_Decryption_Tickmark, GoBack, Quit);
         }
 
         private async void PerformFileSymmetricDecryption()
@@ -260,7 +439,141 @@ namespace Encryptor_Decryptor_Form
                 ShowError("File decryption failed", ex);
             }
         }
-        
+
+        #endregion
+
+        #region Asymmetric Encryption Methods
+
+        private void ShowAsymmetricOptions()
+        {
+            NavigateToNewState(Title_Assymetric_Encryption, Create_account, Login, Quit, GoBack);
+        }
+        private void ShowLogin()
+        {
+            NavigateToNewState(Login_Title, Username_Label, Password_Label, Login_Button, GoBack, Quit, Username_Textbox, Password_Textbox);
+        }
+
+        private void ShowCreateAccount()
+        {
+            NavigateToNewState(Create_Account_Title, Username_Label, Password_Label, Username_Textbox, Password_Textbox, Create_Account_Button, GoBack, Quit);
+        }
+        private void ShowUserMenu(string username)
+        {
+
+            int unreadFiles = Directory.GetFiles(_usersRepository.GetByName(username).InboxPath).Length;
+            User_Title.Text = $"WELCOME, {username}!";
+            Unread_Label.Text = $"YOU HAVE {unreadFiles} FILE(S) IN YOUR INBOX";
+
+            NavigateToNewState(User_Title, Unread_Label, Read_Inbox, Send, Log_Out, Quit);
+
+        }
+
+        private void ShowSend()
+        {
+            NavigateToNewState(Send_Title, Recipient_TickMark, Recipient_Name, GoBack, Quit);
+        }
+
+        private void ShowInbox()
+        {
+            NavigateToNewState(Inbox_Title, Inbox, GoBack, Quit);
+        }
+        private static void MonitorFileAndReencrypt(string filePath, Encryptor_Decryptor.Main.UserRepository.User user)
+        {
+            Console.WriteLine("Monitoring the file. Close the file after viewing to re-encrypt it.");
+
+            // Open the file with the associated application
+            using (var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = filePath,
+                    UseShellExecute = true // Opens the file with the default application
+                }
+            })
+            {
+                process.Start();
+                process.WaitForExit(); // Wait until the application is closed
+            }
+
+            // Re-encrypt the file after closing
+            try
+            {
+                if (Path.GetExtension(filePath) == ".txt")
+                {
+                    string content = File.ReadAllText(filePath, Encoding.UTF8);
+                    string encrypted = user.EncryptMessage(content, user.PublicKey);
+                    File.WriteAllText(filePath, encrypted, Encoding.UTF8);
+                }
+                else
+                {
+                    user.EncryptFile(filePath, user.PublicKey);
+                }
+
+                Console.WriteLine("File was re-encrypted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error re-encrypting file: {ex.Message}");
+            }
+        }
+        private void Recipient_TickMark_Click(object sender, EventArgs e)
+        {
+            HideErrors();
+            if (_usersRepository.Exists(Recipient_Name.Text))
+            {
+                recipient = Recipient_Name.Text;
+                ShowSendMessage();
+            }
+            else
+            {
+                SetControlVisibility(true, Recipient_Error, Recipient_Not_Found);
+            }
+        }
+        private void SendMessage(string senderUsername, string recipientUsername)
+        {
+
+            string message = Message_Send.Text;
+            int n = 0;
+
+            // Add message to recipient's inbox
+            string recipientInbox = _usersRepository.GetByName(recipientUsername).InboxPath;
+            string inboxPath = _usersRepository.GetByName(senderUsername).InboxPath;
+            var files = Directory.GetFiles(recipientInbox);
+            foreach (var file in files.Select(x => Path.GetExtension(x) == ".txt"))
+            {
+                n++;
+            }
+            string messageFilePath = Path.Combine(recipientInbox, $"{files.Length}-{senderUsername}_message.txt");
+            string encrypted = _usersRepository.GetByName(senderUsername).EncryptMessage(message, _usersRepository.GetByName(recipientUsername).PublicKey);
+            File.WriteAllText(messageFilePath, encrypted, Encoding.UTF8);
+        }
+
+        private void SendFile(string senderUsername, string recipientUsername)
+        {
+
+            string filePath = null;
+
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
+
+            // Add file to recipient's inbox
+            string recipientInbox = _usersRepository.GetByName(recipientUsername).InboxPath;
+            string destinationPath = Path.Combine(recipientInbox, Path.GetFileName(filePath));
+            File.Copy(filePath, destinationPath);
+            _usersRepository.GetByName(senderUsername).EncryptFile(destinationPath, _usersRepository.GetByName(recipientUsername).PublicKey);
+
+        }
+        private void ShowOptions()
+        {
+            NavigateToNewState(Send_File, Send_Message, Choose_Title, GoBack, Quit);
+        }
+        private void ShowSendMessage()
+        {
+            NavigateToNewState(Message_Sent_Title, Message_Send, Message_TickMark, GoBack, Quit);
+        }
+
         #endregion
 
         #region Utility Methods
@@ -274,6 +587,13 @@ namespace Encryptor_Decryptor_Form
             }
         }
 
+        private void ResetAllTextBoxes()
+        {
+            foreach (var textBox in GetAllDescendants<TextBox>(this))
+            {
+                textBox.Text = string.Empty;
+            }
+        }
         private void HideAllControls()
         {
             foreach (var control in GetAllDescendants<Control>(this))
@@ -281,6 +601,11 @@ namespace Encryptor_Decryptor_Form
                 control.Enabled = false;
                 control.Visible = false;
             }
+        }
+
+        private void HideErrors()
+        {
+            SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length);
         }
 
         private IEnumerable<T> GetAllDescendants<T>(Control control) where T : class
@@ -317,5 +642,16 @@ namespace Encryptor_Decryptor_Form
         }
 
         #endregion
+
+
+
+
+
+        private void Choose_Title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+     
     }
 }
