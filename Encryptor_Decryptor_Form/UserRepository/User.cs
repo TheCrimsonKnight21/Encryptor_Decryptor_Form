@@ -1,8 +1,5 @@
 ﻿using Encryptor_Decryptor.Main.Utilities.Messages;
-using System;
-using System.IO;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Encryptor_Decryptor.Main.UserRepository
@@ -36,17 +33,18 @@ namespace Encryptor_Decryptor.Main.UserRepository
                 Directory.CreateDirectory(userDirectory);
             }
             (_publicKey, _privateKey) = GenerateKeys();
-        
+
             _inboxPath = userDirectory + "/";  // Correct path to user's inbox directory
         }
-        public User( string username, string password,string PublicKey, string privateKey )
+
+        public User(string username, string password, string PublicKey, string privateKey)
         {
             Username = username;
             _password = password;
 
             // Define the root Users directory and user-specific directory
             string usersDirectory = "../../../Data/Users";
-            string userDirectory = Path.Combine(usersDirectory, _username);
+            string userDirectory = Path.Combine(usersDirectory, _username!);
 
             // Ensure that the Users directory exists
             if (!Directory.Exists(usersDirectory))
@@ -63,7 +61,6 @@ namespace Encryptor_Decryptor.Main.UserRepository
             _inboxPath = userDirectory + "/";  // Correct path to user's inbox directory
             _publicKey = PublicKey;
             _privateKey = privateKey;
-        
         }
 
         public string Username
@@ -112,6 +109,7 @@ namespace Encryptor_Decryptor.Main.UserRepository
         {
             return UsersRepository.VerifyPassword(enteredPassword, _password);
         }
+
         private (string publicKey, string privateKey) GenerateKeys()
         {
             Random random = new Random();
@@ -124,14 +122,11 @@ namespace Encryptor_Decryptor.Main.UserRepository
                 if (l == 0)
                     l = ((int)Username.Length % 2 + i); // Add some user-specific logic
 
-
                 privateKeySb.Append(r + l); // Private key, interrelated with public key
                 publicKeySb.Append(r - l); // Public key
             }
             publicKeySb.Append(l);
             privateKeySb.Append(l);
-
-
 
             // Return the generated keys as public/private pairs
             return (publicKeySb.ToString(), privateKeySb.ToString());
@@ -152,7 +147,7 @@ namespace Encryptor_Decryptor.Main.UserRepository
                     encryptedMessage.Append((char)message[i]);
                     continue;
                 }
-                   
+
                 encryptedMessage.Append((char)(message[i] + int.Parse(publicKey.Substring(n, 3)) + l));
                 n += 3;
             }
@@ -182,18 +177,15 @@ namespace Encryptor_Decryptor.Main.UserRepository
 
         public void EncryptFile(string path, string publicKey)
         {
-           
             int n = 0;
             using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate))
             {
-
                 byte[] buffer = new byte[fileStream.Length];
                 int l = int.Parse(_privateKey.Substring(15));
                 fileStream.Read(buffer, 0, buffer.Length);
                 for (int i = 0; i < buffer.Length; i++)
                 {
-
-                    buffer[i] = (byte)(buffer[i] ^ (int.Parse(publicKey.Substring(n, 3))+ l));
+                    buffer[i] = (byte)(buffer[i] ^ (int.Parse(publicKey.Substring(n, 3)) + l));
                     n += 3;
                     if (n == 15)
                         n = 0;
@@ -203,9 +195,9 @@ namespace Encryptor_Decryptor.Main.UserRepository
                 fileStream.Close();
             }
         }
+
         public void DecryptFile(string path)
         {
-
             int n = 0;
             try
             {

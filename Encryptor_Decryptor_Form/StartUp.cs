@@ -1,7 +1,6 @@
 using Encryptor_Decryptor;
 using Encryptor_Decryptor.Main.UserRepository;
 using EncryptorDecryptor;
-using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics;
 using System.Text;
 
@@ -9,15 +8,15 @@ namespace Encryptor_Decryptor_Form
 {
     public partial class StartUp_Form : Form
     {
-        private readonly Stack<List<Control>> navigationHistory = new Stack<List<Control>>();
+        private readonly Stack<List<Control>> navigationHistory = new();
 
         private readonly UsersRepository _usersRepository = new();
 
-        private Encryptor_Decryptor.Main.UserRepository.User _logedUser;
+        private User _logedUser = null!;
 
-        private string recipient;
+        private string recipient = "";
 
-        private string sendType;
+        private string sendType = "";
 
         public StartUp_Form()
         {
@@ -146,7 +145,7 @@ namespace Encryptor_Decryptor_Form
                 SetControlVisibility(true, Username_Error, Username_Length);
                 error = true;
             }
-            if (username.Contains(" "))
+            if (username.Contains(' '))
             {
                 SetControlVisibility(true, Username_Error, Username_Spaces);
                 error = true;
@@ -161,7 +160,7 @@ namespace Encryptor_Decryptor_Form
                 SetControlVisibility(true, Password_Error, Password_Length);
                 error = true;
             }
-            if (password.Contains(" "))
+            if (password.Contains(' '))
             {
                 SetControlVisibility(true, Password_Error, Password_Spaces);
                 error = true;
@@ -169,7 +168,7 @@ namespace Encryptor_Decryptor_Form
 
             if (!error)
             {
-                Encryptor_Decryptor.Main.UserRepository.User user = new Encryptor_Decryptor.Main.UserRepository.User(username, password);
+                Encryptor_Decryptor.Main.UserRepository.User user = new(username, password);
                 _usersRepository.AddNew(user);
                 _logedUser = user;
                 ShowUserMenu(username);
@@ -237,11 +236,9 @@ namespace Encryptor_Decryptor_Form
         }
         private void Inbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            ListView.SelectedListViewItemCollection selectedItems = Inbox.SelectedItems;
             ListView item = ((ListView)sender);
 
-            string filePath = _logedUser.InboxPath + item.FocusedItem.Text;
+            string filePath = _logedUser.InboxPath + item.FocusedItem!.Text;
             if (!string.IsNullOrEmpty(filePath))
             {
                 try
@@ -331,7 +328,7 @@ namespace Encryptor_Decryptor_Form
 
                 var previousState = navigationHistory.Pop();
                 HideAllControls();
-                SetControlVisibility(true, previousState.ToArray());
+                SetControlVisibility(true, [.. previousState]);
             }
             else
             {
@@ -618,7 +615,7 @@ namespace Encryptor_Decryptor_Form
             NavigateToNewState(Reset_Repository, GoBack, Quit);
         }
 
-        private void SetControlVisibility(bool isVisible, params Control[] controls)
+        private static void SetControlVisibility(bool isVisible, params Control[] controls)
         {
             foreach (var control in controls)
             {
@@ -667,7 +664,7 @@ namespace Encryptor_Decryptor_Form
             }
         }
 
-        private void CopyToClipboard(string text, string successMessage = "Copied to clipboard!")
+        private static void CopyToClipboard(string text, string successMessage = "Copied to clipboard!")
         {
             if (!string.IsNullOrEmpty(text))
             {
@@ -676,7 +673,7 @@ namespace Encryptor_Decryptor_Form
             }
         }
 
-        private void ShowError(string message, Exception ex)
+        private static void ShowError(string message, Exception ex)
         {
             MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

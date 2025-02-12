@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace Encryptor_Decryptor.Main.UserRepository
@@ -24,22 +20,21 @@ namespace Encryptor_Decryptor.Main.UserRepository
             {
                 using (StreamReader tr = new StreamReader(_repositoryFilePath))
                 {
-
                     string[] rows = File.ReadAllText(_repositoryFilePath, Encoding.UTF8).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                     if (rows != null)
-                    foreach (var row in rows)
-                    {
-                        string[] data = row.Split(' ');
-                        if (data.Length >= 2)
+                        foreach (var row in rows)
                         {
-                            string username = data[0];
-                            string password = data[1];
-                            string publicKey = data[3];
-                            string privateKey = data[4];
-                            User user = new User(username, password, publicKey, privateKey);
-                            _users.Add(user);
+                            string[] data = row.Split(' ');
+                            if (data.Length >= 2)
+                            {
+                                string username = data[0];
+                                string password = data[1];
+                                string publicKey = data[3];
+                                string privateKey = data[4];
+                                User user = new User(username, password, publicKey, privateKey);
+                                _users.Add(user);
+                            }
                         }
-                    }
                 }
             }
         }
@@ -69,11 +64,13 @@ namespace Encryptor_Decryptor.Main.UserRepository
                 Directory.CreateDirectory(directoryPath);
             }
         }
+
         public static bool VerifyPassword(string enteredPassword, string storedHashedPassword)
         {
             string hashedEnteredPassword = HashPassword(enteredPassword);
             return hashedEnteredPassword == storedHashedPassword;
         }
+
         public static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

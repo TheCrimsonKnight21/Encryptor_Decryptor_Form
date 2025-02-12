@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace Encryptor_Decryptor
+﻿namespace Encryptor_Decryptor
 {
     public class FileDecryptor
     {
