@@ -82,5 +82,10 @@ namespace Encryptor_Decryptor.Main.UserRepository
                 return Convert.ToBase64String(hashBytes);
             }
         }
+
+        public string GetRepositoryDirectory()
+        {
+            return _repositoryFilePath;
+        }
     }
 }

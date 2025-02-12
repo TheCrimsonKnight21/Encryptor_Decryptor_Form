@@ -17,6 +17,8 @@ namespace Encryptor_Decryptor_Form
 
         private string recipient;
 
+        private string sendType;
+
         public StartUp_Form()
         {
             InitializeComponent();
@@ -193,6 +195,11 @@ namespace Encryptor_Decryptor_Form
                 SetControlVisibility(true, Username_Error, Account_Not_Found);
                 error = true;
             }
+            else if (!_usersRepository.GetByName(username).IsPasswordTrue(password))
+            {
+                SetControlVisibility(true, Password_Error, Incorrect_Password);
+                error = true;
+            }
             if (string.IsNullOrEmpty(username))
             {
                 SetControlVisibility(true, Username_Error, Empty_Username);
@@ -203,11 +210,7 @@ namespace Encryptor_Decryptor_Form
                 SetControlVisibility(true, Password_Error, Empty_Password);
                 error = true;
             }
-            if (!_usersRepository.GetByName(username).IsPasswordTrue(password))
-            {
-                SetControlVisibility(true, Password_Error, Incorrect_Password);
-                error = true;
-            }
+
             if (!error)
             {
                 _logedUser = _usersRepository.GetByName(username);
@@ -234,7 +237,7 @@ namespace Encryptor_Decryptor_Form
         }
         private void Inbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             ListView.SelectedListViewItemCollection selectedItems = Inbox.SelectedItems;
             ListView item = ((ListView)sender);
 
@@ -260,6 +263,7 @@ namespace Encryptor_Decryptor_Form
                 {
                     Console.WriteLine($"Error processing file: {ex.Message}");
                 }
+
                 return;
             }
         }
@@ -270,16 +274,33 @@ namespace Encryptor_Decryptor_Form
 
         private void Send_File_Click(object sender, EventArgs e)
         {
+            ShowSend();
+            sendType = "file";
         }
 
         private void Send_Message_Click(object sender, EventArgs e)
         {
             ShowSend();
+            sendType = "message";
         }
         private void Message_TickMark_Click(object sender, EventArgs e)
         {
             SendMessage(_logedUser.Username, recipient);
-            NavigateBack();
+            SetControlVisibility(true, Message_Send_Success);
+        }
+        private void File_Send_TickMark_Click(object sender, EventArgs e)
+        {
+            SendFile(_logedUser.Username, recipient);
+            SetControlVisibility(true, File_Send_Success);
+        }
+        private void Admin_Button_Click(object sender, EventArgs e)
+        {
+            ShowAdmin();
+        }
+
+        private void Reset_Repository_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(_usersRepository.GetRepositoryDirectory(), "");
             NavigateBack();
         }
 
@@ -522,7 +543,16 @@ namespace Encryptor_Decryptor_Form
             if (_usersRepository.Exists(Recipient_Name.Text))
             {
                 recipient = Recipient_Name.Text;
-                ShowSendMessage();
+
+                switch (sendType)
+                {
+                    case "message":
+                        ShowSendMessage();
+                        break;
+                    case "file":
+                        ShowSendFile();
+                        break;
+                }
             }
             else
             {
@@ -551,7 +581,7 @@ namespace Encryptor_Decryptor_Form
         private void SendFile(string senderUsername, string recipientUsername)
         {
 
-            string filePath = null;
+            string filePath = File_Send_Path.Text;
 
             if (!File.Exists(filePath))
             {
@@ -574,9 +604,19 @@ namespace Encryptor_Decryptor_Form
             NavigateToNewState(Message_Sent_Title, Message_Send, Message_TickMark, GoBack, Quit);
         }
 
+        private void ShowSendFile()
+        {
+            NavigateToNewState(File_Send_Title, File_Send_Path, File_Send_TickMark, GoBack, Quit);
+        }
+
+
         #endregion
 
         #region Utility Methods
+        private void ShowAdmin()
+        {
+            NavigateToNewState(Reset_Repository, GoBack, Quit);
+        }
 
         private void SetControlVisibility(bool isVisible, params Control[] controls)
         {
@@ -605,7 +645,7 @@ namespace Encryptor_Decryptor_Form
 
         private void HideErrors()
         {
-            SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length);
+            SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length, Account_Not_Found);
         }
 
         private IEnumerable<T> GetAllDescendants<T>(Control control) where T : class
@@ -642,16 +682,5 @@ namespace Encryptor_Decryptor_Form
         }
 
         #endregion
-
-
-
-
-
-        private void Choose_Title_Click(object sender, EventArgs e)
-        {
-
-        }
-
-     
     }
 }

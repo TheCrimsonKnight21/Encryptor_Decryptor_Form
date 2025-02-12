@@ -29,50 +29,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(E_D));
-            Message_Sent_Title = new Label();
-            Message_Senf = new TextBox();
-            Message_TickMark = new Button();
+            File_Send_TickMark = new Button();
+            Reset_Repository = new Button();
             SuspendLayout();
             // 
-            // Message_Sent_Title
+            // File_Send_TickMark
             // 
-            Message_Sent_Title.AutoSize = true;
-            Message_Sent_Title.Enabled = false;
-            Message_Sent_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Message_Sent_Title.ForeColor = Color.White;
-            Message_Sent_Title.Location = new Point(614, 118);
-            Message_Sent_Title.Name = "Message_Sent_Title";
-            Message_Sent_Title.Size = new Size(493, 55);
-            Message_Sent_Title.TabIndex = 93;
-            Message_Sent_Title.Text = "MESSAGE TO SEND";
-            Message_Sent_Title.TextAlign = ContentAlignment.MiddleCenter;
-            Message_Sent_Title.Visible = false;
+            File_Send_TickMark.BackColor = Color.White;
+            File_Send_TickMark.BackgroundImage = (Image)resources.GetObject("File_Send_TickMark.BackgroundImage");
+            File_Send_TickMark.BackgroundImageLayout = ImageLayout.Center;
+            File_Send_TickMark.Enabled = false;
+            File_Send_TickMark.FlatStyle = FlatStyle.Popup;
+            File_Send_TickMark.ForeColor = Color.Transparent;
+            File_Send_TickMark.ImageAlign = ContentAlignment.TopCenter;
+            File_Send_TickMark.Location = new Point(1266, 266);
+            File_Send_TickMark.Name = "File_Send_TickMark";
+            File_Send_TickMark.Size = new Size(48, 48);
+            File_Send_TickMark.TabIndex = 94;
+            File_Send_TickMark.UseVisualStyleBackColor = false;
+            File_Send_TickMark.Visible = false;
             // 
-            // Message_Senf
+            // Reset_Repository
             // 
-            Message_Senf.Enabled = false;
-            Message_Senf.Font = new Font("Arial Rounded MT Bold", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Message_Senf.Location = new Point(350, 267);
-            Message_Senf.Name = "Message_Senf";
-            Message_Senf.Size = new Size(895, 48);
-            Message_Senf.TabIndex = 95;
-            Message_Senf.Visible = false;
-            // 
-            // Message_TickMark
-            // 
-            Message_TickMark.BackColor = Color.White;
-            Message_TickMark.BackgroundImage = (Image)resources.GetObject("Message_TickMark.BackgroundImage");
-            Message_TickMark.BackgroundImageLayout = ImageLayout.Center;
-            Message_TickMark.Enabled = false;
-            Message_TickMark.FlatStyle = FlatStyle.Popup;
-            Message_TickMark.ForeColor = Color.Transparent;
-            Message_TickMark.ImageAlign = ContentAlignment.TopCenter;
-            Message_TickMark.Location = new Point(1266, 266);
-            Message_TickMark.Name = "Message_TickMark";
-            Message_TickMark.Size = new Size(48, 48);
-            Message_TickMark.TabIndex = 94;
-            Message_TickMark.UseVisualStyleBackColor = false;
-            Message_TickMark.Visible = false;
+            Reset_Repository.Enabled = false;
+            Reset_Repository.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Reset_Repository.ForeColor = SystemColors.ActiveCaptionText;
+            Reset_Repository.Location = new Point(639, 419);
+            Reset_Repository.Name = "Reset_Repository";
+            Reset_Repository.Size = new Size(387, 172);
+            Reset_Repository.TabIndex = 98;
+            Reset_Repository.TabStop = false;
+            Reset_Repository.Text = "RESET REPOSITORY";
+            Reset_Repository.UseVisualStyleBackColor = true;
+            Reset_Repository.Visible = false;
             // 
             // E_D
             // 
@@ -80,19 +69,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1664, 1011);
-            Controls.Add(Message_Senf);
-            Controls.Add(Message_TickMark);
-            Controls.Add(Message_Sent_Title);
+            Controls.Add(Reset_Repository);
+            Controls.Add(File_Send_TickMark);
             Name = "E_D";
             Text = "E_D";
             Load += E_D_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Label Message_Sent_Title;
-        private TextBox Message_Senf;
-        private Button Message_TickMark;
+        private Button File_Send_TickMark;
+        private Button Reset_Repository;
     }
 }

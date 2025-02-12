@@ -115,6 +115,13 @@ namespace Encryptor_Decryptor_Form
             Message_Send = new TextBox();
             Message_TickMark = new Button();
             Message_Sent_Title = new Label();
+            File_Send_Path = new TextBox();
+            File_Send_TickMark = new Button();
+            File_Send_Title = new Label();
+            File_Send_Success = new Label();
+            Message_Send_Success = new Label();
+            Admin_Button = new Label();
+            Reset_Repository = new Button();
             SuspendLayout();
             // 
             // Title_Symmetric
@@ -1069,7 +1076,6 @@ namespace Encryptor_Decryptor_Form
             Inbox.AutoArrange = false;
             Inbox.Enabled = false;
             Inbox.Font = new Font("Arial Rounded MT Bold", 15.25F);
-            Inbox.FullRowSelect = true;
             Inbox.GridLines = true;
             Inbox.Location = new Point(401, 180);
             Inbox.MultiSelect = false;
@@ -1175,7 +1181,6 @@ namespace Encryptor_Decryptor_Form
             Choose_Title.Text = "CHOOSE OPTION";
             Choose_Title.TextAlign = ContentAlignment.MiddleCenter;
             Choose_Title.Visible = false;
-            Choose_Title.Click += Choose_Title_Click;
             // 
             // Send_File
             // 
@@ -1247,13 +1252,116 @@ namespace Encryptor_Decryptor_Form
             Message_Sent_Title.TextAlign = ContentAlignment.MiddleCenter;
             Message_Sent_Title.Visible = false;
             // 
+            // File_Send_Path
+            // 
+            File_Send_Path.Enabled = false;
+            File_Send_Path.Font = new Font("Arial Rounded MT Bold", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            File_Send_Path.Location = new Point(350, 267);
+            File_Send_Path.Name = "File_Send_Path";
+            File_Send_Path.Size = new Size(895, 48);
+            File_Send_Path.TabIndex = 103;
+            File_Send_Path.Visible = false;
+            // 
+            // File_Send_TickMark
+            // 
+            File_Send_TickMark.BackColor = Color.White;
+            File_Send_TickMark.BackgroundImage = (Image)resources.GetObject("File_Send_TickMark.BackgroundImage");
+            File_Send_TickMark.BackgroundImageLayout = ImageLayout.Center;
+            File_Send_TickMark.Enabled = false;
+            File_Send_TickMark.FlatStyle = FlatStyle.Popup;
+            File_Send_TickMark.ForeColor = Color.Transparent;
+            File_Send_TickMark.ImageAlign = ContentAlignment.TopCenter;
+            File_Send_TickMark.Location = new Point(1266, 266);
+            File_Send_TickMark.Name = "File_Send_TickMark";
+            File_Send_TickMark.Size = new Size(48, 48);
+            File_Send_TickMark.TabIndex = 102;
+            File_Send_TickMark.UseVisualStyleBackColor = false;
+            File_Send_TickMark.Visible = false;
+            File_Send_TickMark.Click += File_Send_TickMark_Click;
+            // 
+            // File_Send_Title
+            // 
+            File_Send_Title.AutoSize = true;
+            File_Send_Title.Enabled = false;
+            File_Send_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            File_Send_Title.ForeColor = Color.White;
+            File_Send_Title.Location = new Point(542, 118);
+            File_Send_Title.Name = "File_Send_Title";
+            File_Send_Title.Size = new Size(581, 55);
+            File_Send_Title.TabIndex = 101;
+            File_Send_Title.Text = "PATH OF FILE TO SEND";
+            File_Send_Title.TextAlign = ContentAlignment.MiddleCenter;
+            File_Send_Title.Visible = false;
+            // 
+            // File_Send_Success
+            // 
+            File_Send_Success.AutoSize = true;
+            File_Send_Success.Enabled = false;
+            File_Send_Success.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            File_Send_Success.ForeColor = Color.White;
+            File_Send_Success.Location = new Point(477, 389);
+            File_Send_Success.Name = "File_Send_Success";
+            File_Send_Success.Size = new Size(694, 55);
+            File_Send_Success.TabIndex = 105;
+            File_Send_Success.Text = "FILE SEND SUCCESSFULLY!";
+            File_Send_Success.TextAlign = ContentAlignment.MiddleCenter;
+            File_Send_Success.Visible = false;
+            // 
+            // Message_Send_Success
+            // 
+            Message_Send_Success.AutoSize = true;
+            Message_Send_Success.Enabled = false;
+            Message_Send_Success.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Message_Send_Success.ForeColor = Color.White;
+            Message_Send_Success.Location = new Point(417, 389);
+            Message_Send_Success.Name = "Message_Send_Success";
+            Message_Send_Success.Size = new Size(830, 55);
+            Message_Send_Success.TabIndex = 104;
+            Message_Send_Success.Text = "MESSAGE SEND SUCCESSFULLY!";
+            Message_Send_Success.TextAlign = ContentAlignment.MiddleCenter;
+            Message_Send_Success.Visible = false;
+            // 
+            // Admin_Button
+            // 
+            Admin_Button.AutoSize = true;
+            Admin_Button.Font = new Font("Arial Rounded MT Bold", 10F);
+            Admin_Button.ForeColor = Color.Black;
+            Admin_Button.Location = new Point(836, 810);
+            Admin_Button.Name = "Admin_Button";
+            Admin_Button.Size = new Size(15, 16);
+            Admin_Button.TabIndex = 106;
+            Admin_Button.Text = "0";
+            Admin_Button.TextAlign = ContentAlignment.MiddleCenter;
+            Admin_Button.Click += Admin_Button_Click;
+            // 
+            // Reset_Repository
+            // 
+            Reset_Repository.Enabled = false;
+            Reset_Repository.Font = new Font("Arial Rounded MT Bold", 30F);
+            Reset_Repository.ForeColor = Color.Red;
+            Reset_Repository.Location = new Point(639, 419);
+            Reset_Repository.Name = "Reset_Repository";
+            Reset_Repository.Size = new Size(387, 172);
+            Reset_Repository.TabIndex = 107;
+            Reset_Repository.TabStop = false;
+            Reset_Repository.Text = "RESET REPOSITORY";
+            Reset_Repository.UseVisualStyleBackColor = true;
+            Reset_Repository.Visible = false;
+            Reset_Repository.Click += Reset_Repository_Click;
+            // 
             // StartUp_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1664, 1011);
-            Controls.Add(Inbox);
+            Controls.Add(Reset_Repository);
+            Controls.Add(Admin_Button);
+            Controls.Add(File_Send_Success);
+            Controls.Add(Message_Send_Success);
+            Controls.Add(File_Send_Path);
+            Controls.Add(File_Send_TickMark);
+            Controls.Add(File_Send_Title);
             Controls.Add(Message_Send);
             Controls.Add(Message_TickMark);
             Controls.Add(Message_Sent_Title);
@@ -1338,6 +1446,7 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Direct_Decryption_Title3);
             Controls.Add(Login_Button);
             Controls.Add(File_Key_title);
+            Controls.Add(Inbox);
             ForeColor = SystemColors.ButtonFace;
             Name = "StartUp_Form";
             Text = "StartUp";
@@ -1433,5 +1542,12 @@ namespace Encryptor_Decryptor_Form
         private TextBox Message_Send;
         private Button Message_TickMark;
         private Label Message_Sent_Title;
+        private TextBox File_Send_Path;
+        private Button File_Send_TickMark;
+        private Label File_Send_Title;
+        private Label File_Send_Success;
+        private Label Message_Send_Success;
+        private Label Admin_Button;
+        private Button Reset_Repository;
     }
 }
