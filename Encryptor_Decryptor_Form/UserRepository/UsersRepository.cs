@@ -84,5 +84,10 @@ namespace Encryptor_Decryptor.Main.UserRepository
         {
             return _repositoryFilePath;
         }
+
+        public string GetUsersDirectory()
+        {
+            return _usersDirectory;
+        }
     }
 }

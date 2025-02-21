@@ -1,4 +1,4 @@
-using Encryptor_Decryptor;
+﻿using Encryptor_Decryptor;
 using Encryptor_Decryptor.Main.UserRepository;
 using EncryptorDecryptor;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Encryptor_Decryptor_Form
 {
-    public partial class StartUp_Form : Form
+    public partial class StartUp_Bulgarian : Form
     {
         private readonly Stack<List<Control>> navigationHistory = new();
 
@@ -18,18 +18,17 @@ namespace Encryptor_Decryptor_Form
 
         private string sendType = "";
 
-        public StartUp_Form()
+        public StartUp_Bulgarian()
         {
             InitializeComponent();
         }
-        private void StartUp_Form_Load(object sender, EventArgs e) 
-        {
-        }
+
+        private void StartUp_Bulgarian_Load(object sender, EventArgs e) { }
 
         #region Event Handlers
         private void Settings_Click(object sender, EventArgs e)
         {
-            Settings settings = new("English", this);
+            Settings settings = new("Bulgarian", this);
             settings.Show();
         }
 
@@ -318,7 +317,7 @@ namespace Encryptor_Decryptor_Form
         {
             ResetAllTextBoxes();
             HideAllControls();
-            SetControlVisibility(true, Symmetric_StartUp, Asymmetric_StartUp, Title_StartUp, Quit, Settings);
+            SetControlVisibility(true, Symmetric_StartUp, Asymmetric_StartUp, Title_StartUp, Quit);
         }
 
         private void NavigateToNewState(params Control[] controlsToShow)
@@ -619,8 +618,6 @@ namespace Encryptor_Decryptor_Form
         #endregion
 
         #region Utility Methods
-
-        
         private void ShowAdmin()
         {
             NavigateToNewState(Reset_Repository, GoBack, Quit);
@@ -656,7 +653,7 @@ namespace Encryptor_Decryptor_Form
             SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length, Account_Not_Found);
         }
 
-        public static IEnumerable<T> GetAllDescendants<T>(Control control) where T : class
+        private IEnumerable<T> GetAllDescendants<T>(Control control) where T : class
         {
             foreach (Control child in control.Controls)
             {
@@ -691,6 +688,6 @@ namespace Encryptor_Decryptor_Form
 
         #endregion
 
-        
+
     }
 }

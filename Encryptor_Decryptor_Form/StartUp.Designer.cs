@@ -122,6 +122,7 @@ namespace Encryptor_Decryptor_Form
             Message_Send_Success = new Label();
             Admin_Button = new Label();
             Reset_Repository = new Button();
+            Settings = new Button();
             SuspendLayout();
             // 
             // Title_Symmetric
@@ -1349,32 +1350,39 @@ namespace Encryptor_Decryptor_Form
             Reset_Repository.Visible = false;
             Reset_Repository.Click += Reset_Repository_Click;
             // 
+            // Settings
+            // 
+            Settings.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Settings.ForeColor = Color.Black;
+            Settings.Location = new Point(639, 829);
+            Settings.Name = "Settings";
+            Settings.Size = new Size(387, 83);
+            Settings.TabIndex = 108;
+            Settings.Text = "SETTINGS";
+            Settings.UseVisualStyleBackColor = true;
+            Settings.Click += Settings_Click;
+            // 
             // StartUp_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1664, 1011);
+            Controls.Add(Settings);
             Controls.Add(Reset_Repository);
             Controls.Add(Admin_Button);
             Controls.Add(File_Send_Success);
             Controls.Add(Message_Send_Success);
             Controls.Add(File_Send_Path);
             Controls.Add(File_Send_TickMark);
-            Controls.Add(File_Send_Title);
             Controls.Add(Message_Send);
             Controls.Add(Message_TickMark);
-            Controls.Add(Message_Sent_Title);
-            Controls.Add(Choose_Title);
             Controls.Add(Send_File);
             Controls.Add(Send_Message);
             Controls.Add(Recipient_Not_Found);
-            Controls.Add(Send_Title);
             Controls.Add(Recipient_Name);
             Controls.Add(Recipient_TickMark);
             Controls.Add(Recipient_Error);
-            Controls.Add(Inbox_Title);
-            Controls.Add(User_Title);
             Controls.Add(Log_Out);
             Controls.Add(Unread_Label);
             Controls.Add(Create_Account_Title);
@@ -1387,7 +1395,6 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Username_Error);
             Controls.Add(Password_Error);
             Controls.Add(Login);
-            Controls.Add(Title_Assymetric_Encryption);
             Controls.Add(File_Decryption_Tickmark);
             Controls.Add(File_Decription_Title);
             Controls.Add(File_Decryption_Key);
@@ -1447,9 +1454,18 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Login_Button);
             Controls.Add(File_Key_title);
             Controls.Add(Inbox);
+            Controls.Add(File_Send_Title);
+            Controls.Add(Message_Sent_Title);
+            Controls.Add(Choose_Title);
+            Controls.Add(Send_Title);
+            Controls.Add(Inbox_Title);
+            Controls.Add(Title_Assymetric_Encryption);
+            Controls.Add(User_Title);
             ForeColor = SystemColors.ButtonFace;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "StartUp_Form";
-            Text = "StartUp";
+            Text = "Encryptor";
+            WindowState = FormWindowState.Maximized;
             Load += StartUp_Form_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -1549,5 +1565,6 @@ namespace Encryptor_Decryptor_Form
         private Label Message_Send_Success;
         private Label Admin_Button;
         private Button Reset_Repository;
+        private Button Settings;
     }
 }
