@@ -43,8 +43,8 @@ namespace Encryptor_Decryptor_Form
                 case "English":
                     Back.Text = "BACK";
                     Settings_Title.Text = "SETTINGS";
-                    language_Label.Text = "Language";
-                    Resolution_Label.Text = "Resolution";
+                    language_Label.Text = "Language:";
+                    Resolution_Label.Text = "Resolution:";
                     English_Button.Text = "English";
                     Bulgarian_Button.Text = "Bulgarian";
                     English_Button.Enabled = false;
@@ -52,8 +52,8 @@ namespace Encryptor_Decryptor_Form
                 case "Bulgarian":
                     Back.Text = "НАЗАД";
                     Settings_Title.Text = "НАСТРОЙКИ";
-                    language_Label.Text = "Език";
-                    Resolution_Label.Text = "Резолюция";
+                    language_Label.Text = "Език:";
+                    Resolution_Label.Text = "Резолюция:";
                     English_Button.Text = "Английски";
                     Bulgarian_Button.Text = "Български";
                     Bulgarian_Button.Enabled = false;

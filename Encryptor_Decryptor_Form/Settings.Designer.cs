@@ -81,9 +81,9 @@
             // 
             Settings_Title.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Settings_Title.ForeColor = Color.White;
-            Settings_Title.Location = new Point(278, 9);
+            Settings_Title.Location = new Point(203, 9);
             Settings_Title.Name = "Settings_Title";
-            Settings_Title.Size = new Size(269, 55);
+            Settings_Title.Size = new Size(418, 55);
             Settings_Title.TabIndex = 102;
             Settings_Title.Text = "SETTINGS";
             Settings_Title.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,7 +119,6 @@
             Resolution_TrackBar.Size = new Size(435, 45);
             Resolution_TrackBar.TabIndex = 105;
             Resolution_TrackBar.Value = 2;
-            //Resolution_TrackBar.Scroll += trackBar1_Scroll;
             // 
             // label1
             // 

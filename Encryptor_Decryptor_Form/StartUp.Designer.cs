@@ -1373,9 +1373,7 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Admin_Button);
             Controls.Add(File_Send_Success);
             Controls.Add(Message_Send_Success);
-            Controls.Add(File_Send_Path);
             Controls.Add(File_Send_TickMark);
-            Controls.Add(Message_Send);
             Controls.Add(Message_TickMark);
             Controls.Add(Send_File);
             Controls.Add(Send_Message);
@@ -1390,11 +1388,9 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Password_Label);
             Controls.Add(Username_Label);
             Controls.Add(Password_Textbox);
-            Controls.Add(Username_Textbox);
             Controls.Add(Login_Title);
             Controls.Add(Username_Error);
             Controls.Add(Password_Error);
-            Controls.Add(Login);
             Controls.Add(File_Decryption_Tickmark);
             Controls.Add(File_Decription_Title);
             Controls.Add(File_Decryption_Key);
@@ -1417,7 +1413,6 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Symmetric_Decryption_Title);
             Controls.Add(Direct_Decryption_Message);
             Controls.Add(Symmetric_File_Decription);
-            Controls.Add(Encrypted_message_label);
             Controls.Add(Direct_Decryption_Title2);
             Controls.Add(Direct_Decryption_Key);
             Controls.Add(Direct_TextBox);
@@ -1461,6 +1456,11 @@ namespace Encryptor_Decryptor_Form
             Controls.Add(Inbox_Title);
             Controls.Add(Title_Assymetric_Encryption);
             Controls.Add(User_Title);
+            Controls.Add(Login);
+            Controls.Add(Encrypted_message_label);
+            Controls.Add(File_Send_Path);
+            Controls.Add(Message_Send);
+            Controls.Add(Username_Textbox);
             ForeColor = SystemColors.ButtonFace;
             FormBorderStyle = FormBorderStyle.None;
             Name = "StartUp_Form";

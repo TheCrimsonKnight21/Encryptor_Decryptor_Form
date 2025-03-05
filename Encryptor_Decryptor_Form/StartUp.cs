@@ -10,7 +10,7 @@ namespace Encryptor_Decryptor_Form
     {
         private readonly Stack<List<Control>> navigationHistory = new();
 
-        private readonly UsersRepository _usersRepository = new();
+        private UsersRepository _usersRepository = new();
 
         private User _logedUser = null!;
 
@@ -307,6 +307,7 @@ namespace Encryptor_Decryptor_Form
             File.WriteAllText(_usersRepository.GetRepositoryDirectory(), "");
 
             Directory.Delete(_usersRepository.GetUsersDirectory(), true);
+            _usersRepository = new UsersRepository();
             NavigateBack();
         }
 
@@ -316,6 +317,7 @@ namespace Encryptor_Decryptor_Form
 
         private void ResetToStart()
         {
+            HideErrors();
             ResetAllTextBoxes();
             HideAllControls();
             SetControlVisibility(true, Symmetric_StartUp, Asymmetric_StartUp, Title_StartUp, Quit, Settings);
@@ -331,6 +333,7 @@ namespace Encryptor_Decryptor_Form
 
         private void NavigateBack()
         {
+            HideErrors();
             ResetAllTextBoxes();
             if (navigationHistory.Count > 0)
             {
@@ -653,7 +656,7 @@ namespace Encryptor_Decryptor_Form
 
         private void HideErrors()
         {
-            SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length, Account_Not_Found);
+            SetControlVisibility(false, Username_Error, Password_Error, Account_Already_Exists, Empty_Username, Empty_Password, Username_Spaces, Password_Spaces, Password_Length, Username_Length, Account_Not_Found, Recipient_Not_Found, Recipient_Error);
         }
 
         public static IEnumerable<T> GetAllDescendants<T>(Control control) where T : class

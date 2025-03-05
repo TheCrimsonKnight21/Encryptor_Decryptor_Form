@@ -118,7 +118,7 @@ namespace Encryptor_Decryptor.Main.UserRepository
             int l = 0;
             for (int i = 1; i < 6; i++) // Generate keys of length 15 (you can adjust the length)
             {
-                int r = random.Next(105, 200); // Generate a random number for characters
+                int r = random.Next(106, 200); // Generate a random number for characters
                 if (l == 0)
                     l = ((int)Username.Length % 2 + i); // Add some user-specific logic
 
@@ -137,7 +137,7 @@ namespace Encryptor_Decryptor.Main.UserRepository
         {
             StringBuilder encryptedMessage = new StringBuilder();
             int n = 0;
-            int l = int.Parse(_privateKey.Substring(15));
+            int l = int.Parse(publicKey.Substring(15));
             for (int i = 0; i < message.Length; i++)
             {
                 if (n >= 15)
@@ -147,8 +147,9 @@ namespace Encryptor_Decryptor.Main.UserRepository
                     encryptedMessage.Append((char)message[i]);
                     continue;
                 }
-
-                encryptedMessage.Append((char)(message[i] + int.Parse(publicKey.Substring(n, 3)) + l));
+                int b = int.Parse(publicKey.Substring(n, 3)) + l;
+                int c = message[i] + b;
+                encryptedMessage.Append((char)c);
                 n += 3;
             }
             return encryptedMessage.ToString();
@@ -169,7 +170,9 @@ namespace Encryptor_Decryptor.Main.UserRepository
                     decryptedMessage.Append((char)encryptedMessage[i]);
                     continue;
                 }
-                decryptedMessage.Append((char)(encryptedMessage[i] - int.Parse(_privateKey.Substring(n, 3)) + l));
+                int b = int.Parse(_privateKey.Substring(n, 3)) - l;
+                int c = encryptedMessage[i] - b;
+                decryptedMessage.Append((char)c);
                 n += 3;
             }
             return decryptedMessage.ToString();
