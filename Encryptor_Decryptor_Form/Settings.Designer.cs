@@ -33,12 +33,9 @@
             Bulgarian_Button = new Button();
             Settings_Title = new Label();
             language_Label = new Label();
-            Resolution_Label = new Label();
-            Resolution_TrackBar = new TrackBar();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            ((System.ComponentModel.ISupportInitialize)Resolution_TrackBar).BeginInit();
+            Display_Label = new Label();
+            Fullscreen_Button = new Button();
+            Windowed_Button = new Button();
             SuspendLayout();
             // 
             // Back
@@ -57,7 +54,7 @@
             // 
             English_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             English_Button.ForeColor = Color.Black;
-            English_Button.Location = new Point(195, 329);
+            English_Button.Location = new Point(195, 162);
             English_Button.Name = "English_Button";
             English_Button.Size = new Size(194, 42);
             English_Button.TabIndex = 38;
@@ -69,7 +66,7 @@
             // 
             Bulgarian_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Bulgarian_Button.ForeColor = Color.Black;
-            Bulgarian_Button.Location = new Point(436, 329);
+            Bulgarian_Button.Location = new Point(436, 162);
             Bulgarian_Button.Name = "Bulgarian_Button";
             Bulgarian_Button.Size = new Size(194, 42);
             Bulgarian_Button.TabIndex = 40;
@@ -92,69 +89,47 @@
             // 
             language_Label.Font = new Font("Arial Rounded MT Bold", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             language_Label.ForeColor = Color.White;
-            language_Label.Location = new Point(289, 262);
+            language_Label.Location = new Point(289, 95);
             language_Label.Name = "language_Label";
             language_Label.Size = new Size(246, 43);
             language_Label.TabIndex = 103;
             language_Label.Text = "LANGUAGE:";
             language_Label.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Resolution_Label
+            // Display_Label
             // 
-            Resolution_Label.Font = new Font("Arial Rounded MT Bold", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Resolution_Label.ForeColor = Color.White;
-            Resolution_Label.Location = new Point(273, 102);
-            Resolution_Label.Name = "Resolution_Label";
-            Resolution_Label.Size = new Size(279, 43);
-            Resolution_Label.TabIndex = 104;
-            Resolution_Label.Text = "RESOLUTION:";
-            Resolution_Label.TextAlign = ContentAlignment.MiddleCenter;
+            Display_Label.Font = new Font("Arial Rounded MT Bold", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Display_Label.ForeColor = Color.White;
+            Display_Label.Location = new Point(246, 222);
+            Display_Label.Name = "Display_Label";
+            Display_Label.Size = new Size(332, 43);
+            Display_Label.TabIndex = 104;
+            Display_Label.Text = "DISPLAY MODE:";
+            Display_Label.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Resolution_TrackBar
+            // Fullscreen_Button
             // 
-            Resolution_TrackBar.Location = new Point(195, 148);
-            Resolution_TrackBar.Maximum = 3;
-            Resolution_TrackBar.Minimum = 1;
-            Resolution_TrackBar.Name = "Resolution_TrackBar";
-            Resolution_TrackBar.Size = new Size(435, 45);
-            Resolution_TrackBar.TabIndex = 105;
-            Resolution_TrackBar.Value = 2;
+            Fullscreen_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Fullscreen_Button.ForeColor = Color.Black;
+            Fullscreen_Button.Location = new Point(436, 286);
+            Fullscreen_Button.Name = "Fullscreen_Button";
+            Fullscreen_Button.Size = new Size(194, 42);
+            Fullscreen_Button.TabIndex = 106;
+            Fullscreen_Button.Text = "FULLSCREEN";
+            Fullscreen_Button.UseVisualStyleBackColor = true;
+            Fullscreen_Button.Click += Fullscreen_Button_Click;
             // 
-            // label1
+            // Windowed_Button
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(351, 181);
-            label1.Name = "label1";
-            label1.Size = new Size(127, 24);
-            label1.TabIndex = 106;
-            label1.Text = "1680 x 1050";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(147, 181);
-            label2.Name = "label2";
-            label2.Size = new Size(115, 24);
-            label2.TabIndex = 107;
-            label2.Text = "1280 x 720";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(555, 181);
-            label3.Name = "label3";
-            label3.Size = new Size(127, 24);
-            label3.TabIndex = 108;
-            label3.Text = "1980 x 1020";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            Windowed_Button.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Windowed_Button.ForeColor = Color.Black;
+            Windowed_Button.Location = new Point(195, 286);
+            Windowed_Button.Name = "Windowed_Button";
+            Windowed_Button.Size = new Size(194, 42);
+            Windowed_Button.TabIndex = 105;
+            Windowed_Button.Text = "WINDOWED";
+            Windowed_Button.UseVisualStyleBackColor = true;
+            Windowed_Button.Click += Windowed_Button_Click;
             // 
             // Settings
             // 
@@ -162,11 +137,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(824, 486);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(Resolution_TrackBar);
-            Controls.Add(Resolution_Label);
+            Controls.Add(Fullscreen_Button);
+            Controls.Add(Windowed_Button);
+            Controls.Add(Display_Label);
             Controls.Add(language_Label);
             Controls.Add(Settings_Title);
             Controls.Add(Bulgarian_Button);
@@ -178,9 +151,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Settings";
             Load += Settings_Load;
-            ((System.ComponentModel.ISupportInitialize)Resolution_TrackBar).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -190,10 +161,8 @@
         private Button Bulgarian_Button;
         private Label Settings_Title;
         private Label language_Label;
-        private Label Resolution_Label;
-        private TrackBar Resolution_TrackBar;
-        private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label Display_Label;
+        private Button Fullscreen_Button;
+        private Button Windowed_Button;
     }
 }

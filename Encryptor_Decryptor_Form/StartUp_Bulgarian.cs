@@ -1,6 +1,8 @@
 ﻿using Encryptor_Decryptor;
 using Encryptor_Decryptor.Main.UserRepository;
+using Encryptor_Decryptor_Form.UserRepository;
 using EncryptorDecryptor;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 
@@ -22,6 +24,17 @@ namespace Encryptor_Decryptor_Form
         {
             InitializeComponent();
         }
+
+        
+        public UsersRepository GetRepository()
+        {
+            return _usersRepository;
+        }
+        public void UpdateRepository(UsersRepository usersRepository)
+        {
+            _usersRepository = usersRepository;
+        }
+        
 
         private void StartUp_Bulgarian_Load(object sender, EventArgs e) { }
 
@@ -491,8 +504,8 @@ namespace Encryptor_Decryptor_Form
         {
 
             int unreadFiles = Directory.GetFiles(_usersRepository.GetByName(username).InboxPath).Length;
-            User_Title.Text = $"WELCOME, {username}!";
-            Unread_Label.Text = $"YOU HAVE {unreadFiles} FILE(S) IN YOUR INBOX";
+            User_Title.Text = $"ДОБРЕ ДОШЛИ, {username}!";
+            Unread_Label.Text = $"ИМАТЕ {unreadFiles} ФАЙЛ(А) ВЪВ ВАШАТА ПОЩА";
 
             NavigateToNewState(User_Title, Unread_Label, Read_Inbox, Send, Log_Out, Quit);
 

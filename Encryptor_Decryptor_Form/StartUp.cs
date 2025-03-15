@@ -1,8 +1,10 @@
 using Encryptor_Decryptor;
 using Encryptor_Decryptor.Main.UserRepository;
+using Encryptor_Decryptor_Form.UserRepository;
 using EncryptorDecryptor;
 using System.Diagnostics;
 using System.Text;
+using System.ComponentModel;
 
 namespace Encryptor_Decryptor_Form
 {
@@ -22,6 +24,23 @@ namespace Encryptor_Decryptor_Form
         {
             InitializeComponent();
         }
+       
+        public UsersRepository GetRepository()
+        {
+            return _usersRepository;
+        }
+        public void UpdateRepository(UsersRepository usersRepository)
+        {
+            _usersRepository = usersRepository;
+        }
+
+        public void SetRepository(UsersRepository value)
+        {
+            _usersRepository = value;
+        }
+       
+
+
         private void StartUp_Form_Load(object sender, EventArgs e) 
         {
         }
@@ -30,7 +49,7 @@ namespace Encryptor_Decryptor_Form
         private void Settings_Click(object sender, EventArgs e)
         {
             Settings settings = new("English", this);
-            settings.Show();
+            settings.ShowDialog();
         }
 
         private void Symmetric_Click(object sender, EventArgs e)

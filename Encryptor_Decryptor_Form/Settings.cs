@@ -1,5 +1,8 @@
 ﻿
 
+using Encryptor_Decryptor.Main.UserRepository;
+using Encryptor_Decryptor_Form.UserRepository;
+
 namespace Encryptor_Decryptor_Form
 {
     public partial class Settings : Form
@@ -32,6 +35,8 @@ namespace Encryptor_Decryptor_Form
             {
                 StartUp_Bulgarian startUp_Bulgarian = new StartUp_Bulgarian();
                 bulgarian = startUp_Bulgarian;
+                
+                
             }
             else if (bulgarian != null && english == null)
             {
@@ -43,20 +48,42 @@ namespace Encryptor_Decryptor_Form
                 case "English":
                     Back.Text = "BACK";
                     Settings_Title.Text = "SETTINGS";
-                    language_Label.Text = "Language:";
-                    Resolution_Label.Text = "Resolution:";
-                    English_Button.Text = "English";
-                    Bulgarian_Button.Text = "Bulgarian";
+                    language_Label.Text = "LANGUAGE:";
+                    Display_Label.Text = "DISPLAY MODE:";
+                    English_Button.Text = "ENGLISH";
+                    Bulgarian_Button.Text = "BULGARIAN";
+                    Fullscreen_Button.Text = "FULLSCREEN";
+                    Windowed_Button.Text = "WINDOWED";
                     English_Button.Enabled = false;
+                    switch (english.WindowState)
+                    {
+                        case FormWindowState.Normal:
+                            Windowed_Button.Enabled = false;
+                            break;
+                        case FormWindowState.Maximized:
+                            Fullscreen_Button.Enabled = false;
+                            break;
+                    }
                     break;
                 case "Bulgarian":
                     Back.Text = "НАЗАД";
                     Settings_Title.Text = "НАСТРОЙКИ";
-                    language_Label.Text = "Език:";
-                    Resolution_Label.Text = "Резолюция:";
-                    English_Button.Text = "Английски";
-                    Bulgarian_Button.Text = "Български";
+                    language_Label.Text = "ЕЗИК:";
+                    Display_Label.Text = "РЕЖИМ НА ПОКАЗВАНЕ:";
+                    English_Button.Text = "АНГЛИЙСКИ";
+                    Bulgarian_Button.Text = "БЪЛГАРСКИ";
+                    Fullscreen_Button.Text = "ЦЯЛ ЕКРАН";
+                    Windowed_Button.Text = " ";
                     Bulgarian_Button.Enabled = false;
+                    switch (bulgarian.WindowState)
+                    {
+                        case FormWindowState.Normal:
+                            Windowed_Button.Enabled = false;
+                            break;
+                        case FormWindowState.Maximized:
+                            Fullscreen_Button.Enabled = false;
+                            break;
+                    }
                     break;
             }
         }
@@ -74,6 +101,7 @@ namespace Encryptor_Decryptor_Form
                 English_Button.Enabled = false;
                 Bulgarian_Button.Enabled = true;
                 Settings_Load(sender, e);
+                UpdateUserRepository(bulgarian, english);
                 bulgarian.Hide();
                 english.Show();
                 this.BringToFront();
@@ -89,61 +117,45 @@ namespace Encryptor_Decryptor_Form
                 English_Button.Enabled = true;
                 Bulgarian_Button.Enabled = false;
                 Settings_Load(sender, e);
+                UpdateUserRepository(english, bulgarian);
                 english.Hide();
                 bulgarian.Show();
                 this.BringToFront();
             }
         }
 
-        //private void SetResolution(int x, int y)
-        //{
-            
-        //    switch (language)
-        //    {
-        //        case "English":
-        //            foreach (var control in StartUp_Form.GetAllDescendants<Control>(english))
-        //            {
+        private void Windowed_Button_Click(object sender, EventArgs e)
+        {
+            english.WindowState = FormWindowState.Normal;
+            bulgarian.WindowState = FormWindowState.Normal;
+            english.FormBorderStyle = FormBorderStyle.FixedSingle;
+            bulgarian.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Windowed_Button.Enabled = false;
+            Fullscreen_Button.Enabled = true;
+            this.BringToFront();
+        }
 
-        //                switch (resolution)
-        //                {
-        //                    case 1:
-        //                        control.Size = new Size(control.Size.Width * x / 1280, control.Size.Height * y / 720);
-        //                        break;
-        //                    case 2:
-        //                        control.Size = new Size(control.Size.Width * x / 1680, control.Size.Height * y / 1050);
-        //                        break;
-        //                    case 3:
-        //                        control.Size = new Size(control.Size.Width * x / 1920, control.Size.Height * y / 1080);
-        //                        break;
-        //                }
-        //            }
-        //            english.Size = new Size(x, y);
-        //            break;
-        //        case "Bulgarian":
-        //            foreach (var control in StartUp_Form.GetAllDescendants<Control>(bulgarian))
-        //            {
+        private void Fullscreen_Button_Click(object sender, EventArgs e)
+        { 
+            english.WindowState = FormWindowState.Maximized;
+            bulgarian.WindowState = FormWindowState.Maximized;
+            english.FormBorderStyle = FormBorderStyle.None;
+            bulgarian.FormBorderStyle = FormBorderStyle.None;
+            Windowed_Button.Enabled = true;
+            Fullscreen_Button.Enabled = false;
+            this.BringToFront();
+        }
+        private void UpdateUserRepository(Form fromForm, Form toForm)
+        {
+            if (fromForm is IHasUserRepository fromRepoForm && toForm is IHasUserRepository toRepoForm)
+            {
+                toRepoForm.UserRepository = fromRepoForm.UserRepository;
+            }
+        }
+    }
 
-        //            }
-        //            break;
-        //    }
-        //}
-
-        //private void trackBar1_Scroll(object sender, EventArgs e)
-        //{
-        //    if (Resolution_TrackBar.Value == 1)
-        //    {
-        //        SetResolution(1280, 720);
-        //    }
-        //    else if (Resolution_TrackBar.Value == 2)
-        //    {
-        //        SetResolution(1680 ,1050);
-        //    }
-        //    else if (Resolution_TrackBar.Value == 3)
-        //    {
-        //        SetResolution(1920, 1080);
-        //    }
-
-        //    resolution = Resolution_TrackBar.Value;
-        //}
+    public interface IHasUserRepository
+    {
+        UsersRepository UserRepository { get; set; }
     }
 }
