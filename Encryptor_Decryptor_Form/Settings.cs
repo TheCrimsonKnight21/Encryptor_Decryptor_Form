@@ -1,7 +1,6 @@
 ﻿
 
 using Encryptor_Decryptor.Main.UserRepository;
-using Encryptor_Decryptor_Form.UserRepository;
 
 namespace Encryptor_Decryptor_Form
 {

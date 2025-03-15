@@ -1,6 +1,5 @@
 ﻿using Encryptor_Decryptor;
 using Encryptor_Decryptor.Main.UserRepository;
-using Encryptor_Decryptor_Form.UserRepository;
 using EncryptorDecryptor;
 using System.ComponentModel;
 using System.Diagnostics;

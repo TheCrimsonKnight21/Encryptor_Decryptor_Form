@@ -1354,7 +1354,7 @@ namespace Encryptor_Decryptor_Form
             // 
             Settings.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Settings.ForeColor = Color.Black;
-            Settings.Location = new Point(639, 829);
+            Settings.Location = new Point(639, 627);
             Settings.Name = "Settings";
             Settings.Size = new Size(387, 83);
             Settings.TabIndex = 108;
